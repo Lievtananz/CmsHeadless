@@ -249,3 +249,8 @@ a.btn.btn-primary:hover {
     border-color: black;
     color: black;
 }
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: red;
+}

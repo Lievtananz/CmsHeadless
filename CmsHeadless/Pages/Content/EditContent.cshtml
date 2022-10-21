@@ -7,7 +7,7 @@
     <form method="post"  class="row custom-form" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-12 col-xl-6">
-            <div class="form-group">
+            <div class="form-group required">
                 <label asp-for="_formEditContentModel.Title" class="control-label"></label>
                 <input asp-for="_formEditContentModel.Title" class="form-control textForm" required value="@Model.content.Title"/>
                 <span asp-validation-for="_formEditContentModel.Title" class="text-danger"></span>
@@ -22,7 +22,7 @@
                 <input asp-for="_formEditContentModel.Description" class="form-control textForm" value="@Model.content.Description"/>
                 <span asp-validation-for="_formEditContentModel.Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group required">
                 <label asp-for="_formEditContentModel.Text" class="control-label"></label>
                 <input asp-for="_formEditContentModel.Text" class="form-control textForm" value="@Model.content.Text" required/>
                 <span asp-validation-for="_formEditContentModel.Text" class="text-danger"></span>

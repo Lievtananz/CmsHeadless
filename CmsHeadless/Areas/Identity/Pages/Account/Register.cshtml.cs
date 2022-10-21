@@ -141,6 +141,12 @@ namespace CmsHeadless.Areas.Identity.Pages.Account
                 user.DateOfBirth = Input.DateOfBirth;
                 user.Gender = Input.Gender;
 
+                var isExist=await _userManager.FindByEmailAsync(user.Email);
+                if (isExist!= null)
+                {
+                    ModelState.AddModelError(string.Empty, "Email già esistente");
+                    return Page();
+                }
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

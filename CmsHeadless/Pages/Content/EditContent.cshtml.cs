@@ -97,6 +97,7 @@ namespace CmsHeadless.Pages.Content
         public async Task<IActionResult> OnGetAsync(int? id, string? searchString)
         {
             LocationsOfContent = ContentLocationAvailable.Where(c => c.ContentId == id).Select(c=>c.Location).ToList();
+
             var tempQrCode = _context.QrCode.Where(c => c.ContentId == id).ToList();
             if (tempQrCode.Count() > 0)
             {
@@ -139,14 +140,7 @@ namespace CmsHeadless.Pages.Content
                 PubblicationDateString = tempDate.ToString("yyyy-MM-dd");
             }
 
-            if (content.InsertionDate == null)
-            {
-                InsertionDateString = null;
-            }
-            else
-            {
-                InsertionDateString = content.InsertionDate.ToString("yyyy-MM-dd");
-            }
+           
 
             if (content.LastEdit == null)
             {
@@ -157,6 +151,10 @@ namespace CmsHeadless.Pages.Content
                 DateTime tempDate = (DateTime)content.LastEdit;
                 lastEditString = tempDate.ToString("yyyy-MM-dd");
             }
+
+            DateTime InsertiontempDate = (DateTime)content.InsertionDate;
+            InsertionDateString = InsertiontempDate.ToString("yyyy-MM-dd");
+            
 
             if (content == null)
             {
@@ -235,15 +233,6 @@ namespace CmsHeadless.Pages.Content
                     {
                         DateTime tempDate = (DateTime)content.PubblicationDate;
                         PubblicationDateString = tempDate.ToString("yyyy-MM-dd");
-                    }
-
-                    if (content.InsertionDate == null)
-                    {
-                        InsertionDateString = null;
-                    }
-                    else
-                    {
-                        InsertionDateString = content.InsertionDate.ToString("yyyy-MM-dd");
                     }
 
                     if (content.LastEdit == null)
@@ -475,7 +464,7 @@ namespace CmsHeadless.Pages.Content
             }
             
 
-            ContentToUpdate.InsertionDate = _formEditContentModel.InsertionDate;
+            //ContentToUpdate.InsertionDate = _formEditContentModel.InsertionDate;
             ContentToUpdate.LastEdit = DateTime.Now.Date;
 
             /*start ContentLocation*/
